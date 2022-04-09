@@ -18,7 +18,7 @@
  */
 
 #include "BLDC_controller.h"
-
+// test
 /* Named constants for Chart: '<S5>/F03_02_Control_Mode_Manager' */
 #define IN_ACTIVE                      ((uint8_T)1U)
 #define IN_NO_ACTIVE_CHILD             ((uint8_T)0U)
