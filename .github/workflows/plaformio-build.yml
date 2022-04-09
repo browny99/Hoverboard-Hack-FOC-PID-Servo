@@ -29,3 +29,10 @@ jobs:
         pip install --upgrade platformio
     - name: Run PlatformIO
       run: pio run
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          .pio/build/VARIANT_ADC/firmware.elf
+          .pio/build/VARIANT_ADC/firmware.bin
