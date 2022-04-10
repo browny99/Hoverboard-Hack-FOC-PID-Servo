@@ -1,4 +1,3 @@
-
 #include <stdbool.h>
 #include <string.h>
 #include "stm32f1xx_hal.h"
@@ -298,53 +297,50 @@ void Motor_Pos() {
   cnt++;
 }
 
-void PID( PID_DATA *p){
-	
-	/* typedef struct 
-     {
-		 float Kp;
-		 float Ki;
-		 int dz ;
-		 int limit;
-		 int error;
-		 int cum_error;
-		 int input;
-	   int feedback;
-		 int output;
-		 
-		 }PID_DATA ;
-   */
-	p->error = p->input -  p->feedback;
-	p->cum_error = p->cum_error + p->error;
-	if (p->cum_error > p->limit ) {p->cum_error = p->limit;}
-	else if (p->cum_error< -p->limit) {p->cum_error = - p->limit ;}
-	p->output = p->error*p->Kp + p->cum_error*p->Ki ;
-	
-	
-}
-void print_PID(PID_DATA p){
-	static int cnt = 0 ;
-	if(cnt == 0) {
-		printf("PID INPUT PARAMETERS p.Kp:%f p.Ki:%f p.dz:%i p.limit:%i \r\n",
-          p.Kp,        // PID Kp gain  
-          p.Ki,        // 2: PID Ki gain
-          p.dz,        // PID error dead zone         
-          p.limit);     // PID integrator limit
-		
-		
-		
-	}
-		
-	if(cnt % 25 == 0){
-	
-				printf("p.error:%i p.cum_error:%i p.input:%i p.feedback:%i p.output%i \r\n",
-          
-          p.error,     // pid error           
-          p.cum_error, // pid integral 
-					p.input  ,   // input [-1000, 10]00]
-					p.feedback,  // feedback [-1000,1000]
-				  p.output);   // output [-1000, 1000]
-	}
-	cnt++ ;
-}
+void PID(PID_DATA *p) {
 
+  /* typedef struct
+{
+           float Kp;
+           float Ki;
+           int dz ;
+           int limit;
+           int error;
+           int cum_error;
+           int input;
+     int feedback;
+           int output;
+
+           }PID_DATA ;
+*/
+  p->error = p->input - p->feedback;
+  p->cum_error = p->cum_error + p->error;
+  if (p->cum_error > p->limit) {
+    p->cum_error = p->limit;
+  } else if (p->cum_error < -p->limit) {
+    p->cum_error = -p->limit;
+  }
+  p->output = p->error * p->Kp + p->cum_error * p->Ki;
+}
+void print_PID(PID_DATA p) {
+  static int cnt = 0;
+  if (cnt == 0) {
+    printf("PID INPUT PARAMETERS p.Kp:%f p.Ki:%f p.dz:%i p.limit:%i \r\n",
+           p.Kp,     // PID Kp gain
+           p.Ki,     // 2: PID Ki gain
+           p.dz,     // PID error dead zone
+           p.limit); // PID integrator limit
+  }
+
+  if (cnt % 25 == 0) {
+
+    printf("p.error:%i p.cum_error:%i p.input:%i p.feedback:%i p.output%i \r\n",
+
+           p.error,     // pid error
+           p.cum_error, // pid integral
+           p.input,     // input [-1000, 10]00]
+           p.feedback,  // feedback [-1000,1000]
+           p.output);   // output [-1000, 1000]
+  }
+  cnt++;
+}
