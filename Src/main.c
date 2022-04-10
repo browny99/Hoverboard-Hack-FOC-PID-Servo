@@ -121,6 +121,16 @@ static uint8_t sideboard_leds_R;
 #endif
 
 static int16_t speed; // local variable for speed. -1000 to 1000
+#ifndef VARIANT_TRANSPOTTER
+  static int16_t  speed1;                //lodal variable for motorL speed command
+  static int16_t  speed2;                //local variable for motorR speed command
+  static int16_t  steer;                // local variable for steering. -1000 to 1000
+  static int16_t  speed1RateFixdt;       // local fixed-point variable for steed1 rate limiter
+  static int16_t  speed2RateFixdt;       // local fixed-point variable for speed2 rate limiter
+  static int32_t  speed1Fixdt;           // local fixed-point variable for speed1 low-pass filter
+  static int32_t  speed2Fixdt;           // local fixed-point variable for speed2 low-pass filter
+#endif
+
 
 static uint32_t inactivity_timeout_counter;
 static MultipleTap MultipleTapBrake; // define multiple tap functionality for the Brake pedal
