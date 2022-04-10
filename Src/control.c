@@ -263,36 +263,39 @@ void Nunchuk_Read(void) {
   //setScopeChannel(3, ((int)nunchuk_data[5] >> 1) & 1);
 }
 
-void Motor_Pos(){
-static int motAngleLeftLast = 0;
-static int motAngleRightLast = 0;	
-static int cycleDegsL = 0 ;  //wheel encoder roll over count in deg
-static int cycleDegsR = 0 ;  //wheel encoder roll over count in deg	
-int diffL = 0;
-int diffR = 0;
-static int cnt = 0;	
-	if(cnt == 0) 
-	{
-		motAngleLeftLast = motAngleLeft ;
-		motAngleRightLast = motAngleRight ;
-	}
-	diffL = motAngleLeft - motAngleLeftLast ;
-	//if(cnt % 25 == 0 ) {printf( " diffL :%i, diffR :%i , motAngleRightLast :%i ",diffL , diffR, motAngleRightLast );}
-	
-if( diffL < -180 ) { cycleDegsL = cycleDegsL + 360; }
-else 
-if(diffL > 180) { cycleDegsL = cycleDegsL  - 360;}
-MotorPosL = motAngleLeft + cycleDegsL;
+void Motor_Pos() {
+  static int motAngleLeftLast = 0;
+  static int motAngleRightLast = 0;
+  static int cycleDegsL = 0; // wheel encoder roll over count in deg
+  static int cycleDegsR = 0; // wheel encoder roll over count in deg
+  int diffL = 0;
+  int diffR = 0;
+  static int cnt = 0;
+  if (cnt == 0) {
+    motAngleLeftLast = motAngleLeft;
+    motAngleRightLast = motAngleRight;
+  }
+  diffL = motAngleLeft - motAngleLeftLast;
+  // if(cnt % 25 == 0 ) {printf( " diffL :%i, diffR :%i , motAngleRightLast :%i
+  // ",diffL , diffR, motAngleRightLast );}
 
-	diffR = motAngleRight - motAngleRightLast ;
-if( diffR < -180 ) { cycleDegsR = cycleDegsR + 360; }
-else 
-if(diffR > 180) { cycleDegsR = cycleDegsR  - 360;}
-MotorPosR = motAngleRight + cycleDegsR;
-motAngleLeftLast = motAngleLeft;
-motAngleRightLast = motAngleRight;
-cnt++;
+  if (diffL < -180) {
+    cycleDegsL = cycleDegsL + 360;
+  } else if (diffL > 180) {
+    cycleDegsL = cycleDegsL - 360;
+  }
+  MotorPosL = motAngleLeft + cycleDegsL;
 
+  diffR = motAngleRight - motAngleRightLast;
+  if (diffR < -180) {
+    cycleDegsR = cycleDegsR + 360;
+  } else if (diffR > 180) {
+    cycleDegsR = cycleDegsR - 360;
+  }
+  MotorPosR = motAngleRight + cycleDegsR;
+  motAngleLeftLast = motAngleLeft;
+  motAngleRightLast = motAngleRight;
+  cnt++;
 }
 
 void PID( PID_DATA *p){
