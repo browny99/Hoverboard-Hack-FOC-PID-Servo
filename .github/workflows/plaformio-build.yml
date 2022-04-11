@@ -31,7 +31,7 @@ jobs:
       run: pio run
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+      #if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           ~/.platformio/.pio/build/VARIANT_ADC/firmware.elf
