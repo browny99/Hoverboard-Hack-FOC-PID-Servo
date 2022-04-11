@@ -62,7 +62,7 @@ extern InputStruct input2[]; // input structure
 extern int16_t speedAvg;                // Average measured speed
 extern int16_t speedAvgAbs;             // Average measured speed in absolute
 extern volatile uint32_t timeoutCntGen; // Timeout counter for the General timeout (PPM, PWM, Nunchuk)
-extern volatile uint8_t timeoutFlgGen; // Timeout Flag for the General timeout (PPM, PWM, Nunchuk)
+extern volatile uint8_t timeoutFlgGen;  // Timeout Flag for the General timeout (PPM, PWM, Nunchuk)
 extern uint8_t timeoutFlgADC; // Timeout Flag for for ADC Protection: 0 = OK, 1 = Problem detected (line disconnected or wrong ADC data)
 extern uint8_t timeoutFlgSerial; // Timeout Flag for Rx Serial command: 0 = OK, 1 = Problem detected (line disconnected or wrong Rx data)
 
