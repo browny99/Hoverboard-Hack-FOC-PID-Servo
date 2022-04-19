@@ -177,9 +177,7 @@ int main(void) {
   int16_t cmdL = 0, cmdR = 0;
   int16_t cmdL_prev = 0, cmdR_prev = 0;
 
-  int32_t board_temp_adcFixdt =
-      adc_buffer.temp << 16; // Fixed-point filter output initialized with
-                             // current ADC converted to fixed-point
+  int32_t board_temp_adcFixdt = adc_buffer.temp << 16; // Fixed-point filter output initialized with current ADC converted to fixed-point
   int16_t board_temp_adcFilt = adc_buffer.temp;
   int16_t board_temp_deg_c;
 
